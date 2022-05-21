@@ -1,0 +1,56 @@
+[
+  {
+    "_id": 1,
+    "name": "Camera Mount Mic Stand Adaptor",
+    "image": "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/523256/17016094_800.jpg",
+    "description": "Camera Mount Mic Stand Adapter with Ball-and-Socket Head, allows mounting DSLR Camera or Video Recorder directly to Mic Stand threads, 5/8 inches Mic Stand Threads female to 1/4 Camera Threads male, rotates 360-Degrees and tilts 180-Degrees with Soft Touch Knob for Locking Camera at desired angle.",
+    "minOrderQuantity": 100,
+    "available": 1000,
+    "price": 99
+  },
+  {
+    "_id": 2,
+    "name": "SAMYUNG 50 mm Standard lens",
+    "image": "https://digitalbridgebd.com/wp-content/uploads/2019/10/canon-ef-75-300mm-1.jpg",
+    "description": "Aperture ring and focus ring with gear ring for focus pullers. High quality optics and mechanics. Distance and aperture scale arranged on the side. Tempered glass lenses. Incl. Lens hood, lens cap, lens protection bag and bayonet protection cap.",
+    "minOrderQuantity": 100,
+    "available": 990,
+    "price": 565
+  },
+  {
+    "_id": 3,
+    "name": "Camera Filters",
+    "image": "https://blog.upskillist.com/wp-content/uploads/2022/01/New-Project-8.png",
+    "description": "These are used to change the background color and obtain clear details about the object of the photographs. Available in sizes ranging from 49 mm to 58mm. Moreover our range of colors are yellow, red, orange, blue, green etc.",
+    "minOrderQuantity": 500,
+    "available": 10000,
+    "price": 20
+  },
+  {
+    "_id": 4,
+    "name": "External Camera Flash",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_tBtK6bwe0E74jpBVcbTSA85WN5wD7Zc9uw&usqp=CAU",
+    "description": "Product Description:Godox TT520II Camera Flash with built-in wireless signal this camera flash supports wireless triggering functions that can almost work with DSLR Cameras Canon, Nikon, Sony, Pentax, Olympus",
+    "minOrderQuantity": 30,
+    "available": 500,
+    "price": 449
+  },
+  {
+    "_id": 5,
+    "name": "Camera Adaptor",
+    "image": "https://3.imimg.com/data3/LF/QC/GLADMIN-23160/camera-adaptor-500x500.jpg",
+    "description": "Keeping the track of latest happening in this domain, we provide the best quality of CCTV Camera Adapter. By using modern machinery, the camera adapters are manufactured in accordance to the industry norms by our vendors.",
+    "minOrderQuantity": 300,
+    "available": 5000,
+    "price": 15
+  },
+  {
+    "_id": 6,
+    "name": "Battery grip",
+    "image": "https://asia.canon/media/image/2018/09/26/fa10aa6bc25e45d28b25999565dabd26_Battery+Grip+BG-E22.png",
+    "description": "Support screen lock function, support lock display mode.use low-power LCD screen. The Timer can Set Delay Time,Exposure Time,Time Interval and Number of Shots. The lithium battery(NP-FZ100) can be used. Excellent coating made with the top-class rubber for perfect feeling.",
+    "minOrderQuantity": 50,
+    "available": 1000,
+    "price": 169
+  }
+]
