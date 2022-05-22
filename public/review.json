@@ -1,0 +1,30 @@
+[
+  {
+    "_id": 1,
+    "name": "John Doe",
+    "image": "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580",
+    "comments": "Despite the lacklustre review, this camera is still among the highest rated - ",
+    "rating": 5
+  },
+  {
+    "_id": 2,
+    "name": "Mellisa Reddy",
+    "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500",
+    "comments": "I tend to agree, a working holiday indeed, Aka working the likes of the upcoming Cameras.",
+    "rating": 4
+  },
+  {
+    "_id": 3,
+    "name": "Angelina Jolie",
+    "image": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500",
+    "comments": "My guess is that the R10 will be priced higher than the M50, so that model won't die any time soon. Time will tell.",
+    "rating": 3
+  },
+  {
+    "_id": 4,
+    "name": "Brad Pitt",
+    "image": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500",
+    "comments": "My guess is that the R10 will be priced higher than the M50, so that model won't die any time soon. Time will tell.",
+    "rating": 5
+  }
+]

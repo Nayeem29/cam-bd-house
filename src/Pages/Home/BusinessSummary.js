@@ -7,7 +7,7 @@ import loan from '../../Assests/business-loan-icon.webp';
 const BusinessSummary = () => {
   return (
     <div className='ml-5 mt-24'>
-      <h1 className='text-3xl font-semibold text-[#525252]'>Learn More About
+      <h1 className='text-3xl ml-5 font-semibold text-[#525252]'>Learn More About
         <span className='text-4xl font-bold'> CAM BD HOUSE</span>
       </h1>
       <hr className='h-2 mx-12 my-3' />
