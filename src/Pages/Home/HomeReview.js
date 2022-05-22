@@ -4,7 +4,7 @@ import Loading from '../SharedComponnets/Loading';
 import CustomerReview from './CustomerReview';
 
 const HomeReview = () => {
-  const { data: reviews, isLoading, refetch } = useQuery('reviews', () => fetch('review.json').then(res => res.json()));
+  const { data: reviews, isLoading } = useQuery('reviews', () => fetch('review.json').then(res => res.json()));
   // console.log(reviews);
   if (isLoading) {
     return <Loading />
