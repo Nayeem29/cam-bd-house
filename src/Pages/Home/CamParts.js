@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Products from './Products';
 
 const CamParts = () => {
   const [camparts, setCamparts] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
-    fetch('parts.json')
+    fetch('http://localhost:5000/camera')
       .then(res => res.json())
       .then(data => setCamparts(data))
   }, [])
+  const handleOrder = (id) => {
+    navigate(`/purchase/${id}`);
+  }
   return (
     <div className='mb-5 ml-2 lg:mx-5'>
       <h1 className='text-4xl font-bold text-[#525252] mb-12'>Our Featured Products</h1>
@@ -17,6 +22,7 @@ const CamParts = () => {
           camparts.map(cam => <Products
             key={cam._id}
             cam={cam}
+            handleOrder={handleOrder}
           ></Products>)
         }
       </div>

@@ -1,12 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
+
 
 const Navbar = () => {
+  const [user] = useAuthState(auth);
   const MenuItems = <>
     <li><Link to='/'>Home</Link></li>
     <li><Link to='/purchase'>Purchase</Link></li>
     <li><Link to='/blogs'>Blogs</Link></li>
   </>
+  const logOut = () => {
+    signOut(auth);
+  }
   return (
     <div className="navbar bg-base-200">
       <div className="navbar-start">
@@ -19,14 +27,20 @@ const Navbar = () => {
               MenuItems
             }
             <li tabIndex="0">
-              <Link to='/signin' className="justify-between">
-                Login
-                {/* <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg> */}
-              </Link>
-              <ul className="p-2">
-                <li>Submenu 1</li>
-                <li>Submenu 2</li>
-              </ul>
+              {user ?
+                <>
+                  <ul className="p-2">
+                    <li>{user?.email}</li>
+                  </ul>
+                  <button onClick={logOut} className="btn btn-ghost">Logout</button>
+                </>
+                :
+                <>
+                  <Link to='/signin' className="justify-between">
+                    Login
+                  </Link>
+                </>
+              }
             </li>
           </ul>
         </div>
@@ -38,14 +52,20 @@ const Navbar = () => {
             MenuItems
           }
           <li tabIndex="0">
-            <Link to='/login'>
-              Login
-              {/* <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg> */}
-            </Link>
-            <ul className="px-2 z-10">
-              <li>Submenu 1</li>
-              <li>Submenu 2</li>
-            </ul>
+            {user ?
+              <>
+                <ul className="p-2">
+                  <li>{user?.email}</li>
+                </ul>
+                <button onClick={logOut} className="btn btn-ghost">Logout</button>
+              </>
+              :
+              <>
+                <Link to='/signin' className="justify-between">
+                  Login
+                </Link>
+              </>
+            }
           </li>
         </ul>
       </div>

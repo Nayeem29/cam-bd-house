@@ -1,24 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import Loading from '../SharedComponnets/Loading';
 
 const Signin = () => {
+  // const [email, setEmail] = useState('');
+  const [
+    signInWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
+
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  let signError;
+  const onSubmit = data => {
+    console.log(data)
+    const email = data.email;
+    const password = data.password;
+    signInWithEmailAndPassword(email, password);
+  };
+
+  // const passwordResetEmail = async () => {
+  //   await sendPasswordResetEmail(email);
+  // }
+
+  if (user || gUser) {
+    navigate(from, { replace: true });
+  }
+  if (loading || gLoading || sending) {
+    return <Loading />
+  }
+  if (error || gError || resetError) {
+    signError = <small className='text-red-600'>{error?.message}{gError?.message}{resetError?.message}</small>
+  }
   return (
     <div className=''>
-      <div class="hero min-h-screen my-auto bg-white">
-        <div class="hero-content flex-col lg:flex-row-reverse">
-          {/* <div class="text-center lg:text-left">
-      <h1 class="text-5xl font-bold">Login now!</h1>
-      <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p> */}
+      <div className="hero min-h-screen my-auto bg-white">
+        <div className="hero-content flex-col lg:flex-row-reverse">
         </div>
-        <div class="card w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card w-full max-w-sm shadow-2xl bg-base-100">
+          <h1 className='text-center text-3xl font-bold text-[#525252]'>Sign In Here</h1>
+          <hr className='w-full h-3 mt-2' />
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div class="card-body">
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Email</span>
+            <div className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
                 </label>
                 <input
                   {...register("email",
@@ -33,15 +69,15 @@ const Signin = () => {
                         message: 'Invalid Email'
                       }
                     })}
-                  placeholder="email" class="input input-bordered" />
-                < label class="label">
-                  {errors.email?.type === 'required' && <span class="label-text-alt text-xs text-red-600">{errors.email.message}</span>}
-                  {errors.email?.type === 'pattern' && <span class="label-text-alt text-xs text-red-600">{errors.email.message}</span>}
+                  placeholder="email" className="input input-bordered" />
+                < label className="label">
+                  {errors.email?.type === 'required' && <span className="label-text-alt text-xs text-red-600">{errors.email.message}</span>}
+                  {errors.email?.type === 'pattern' && <span className="label-text-alt text-xs text-red-600">{errors.email.message}</span>}
                 </label>
               </div>
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Password</span>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
                 </label>
                 <input
                   {...register("password",
@@ -56,25 +92,27 @@ const Signin = () => {
                         message: 'Min 8 letters and a uppercase,lowercase,symbol,number'
                       }
                     })}
-                  placeholder="password" class="input input-bordered" />
-                < label class="label">
-                  {errors.password?.type === 'required' && <span class="label-text-alt text-xs text-red-600">{errors.password.message}</span>}
-                  {errors.password?.type === 'pattern' && <span class="label-text-alt text-xs text-red-600">{errors.password.message}</span>}
+                  placeholder="password" className="input input-bordered" />
+                < label className="label">
+                  {errors.password?.type === 'required' && <span className="label-text-alt text-xs text-red-600">{errors.password.message}</span>}
+                  {errors.password?.type === 'pattern' && <span className="label-text-alt text-xs text-red-600">{errors.password.message}</span>}
 
                 </label>
-                <label class="label">
-                  <Link to='' class="label-text-alt link link-hover">Forgot password?</Link>
+                <label className="label">
+                  <button
+                    // onClick={passwordResetEmail} 
+                    className="label-text-alt link link-hover">Forgot password?</button>
                 </label>
               </div>
-              <div class="form-control mt-6 mb-2">
-                <button class="btn btn-primary">Login</button>
-              </div>
-              <label class="label">
-                <Link to='/signup' class="label-text-alt link link-hover mx-auto">Create an Account?</Link>
+              {error && signError}
+              <input className='btn w-full max-w-xs text-white' type="submit" value="Sign In" />
+              <label className="label">
+                <Link to='/signup' className="label-text-alt link link-hover mx-auto">Create an Account?</Link>
               </label>
             </div>
-            <div class="divider">OR</div>
-            <button class="btn btn-primary rounded-t-none w-full mt-3">Continue with Google</button>
+            <div className="divider">OR</div>
+            <button onClick={() => signInWithGoogle()}
+              className="btn btn-primary rounded-t-none w-full mt-3">Continue with Google</button>
           </form>
         </div>
       </div >
