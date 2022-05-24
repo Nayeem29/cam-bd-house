@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../SharedComponnets/Loading';
+import useToken from '../../Hooks/useToken';
 
 const Signup = () => {
   const [
@@ -14,25 +15,30 @@ const Signup = () => {
     error,
   ] = useCreateUserWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [token] = useToken(user || gUser);
 
   const navigate = useNavigate();
   let signError;
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => {
-    // console.log(data)
+  const onSubmit = async data => {
+    const name = data.name;
+    // console.log(data);
     const email = data.email;
     const password = data.password;
-    createUserWithEmailAndPassword(email, password);
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: name });
   };
-  if (user || gUser) {
-    console.log(user);
-    navigate('/signin');
-  }
-  if (loading || gLoading) {
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [token, navigate])
+  if (loading || gLoading || updating) {
     return <Loading />
   }
-  if (error || gError) {
-    signError = <small className='text-red-600'>{error?.message}{gError?.message}</small>
+  if (error || gError || updateError) {
+    signError = <small className='text-red-600'>{error?.message}{updateError?.message}{gError?.message}</small>
   }
 
   return (
@@ -111,7 +117,7 @@ const Signup = () => {
               {
                 error && signError
               }
-              <input className='btn w-full max-w-xs text-white' type="submit" value="Sign Up" />
+              <input className='btn btn-primary w-full max-w-xs text-white' type="submit" value="Sign Up" />
               <label className="label">
                 <Link to='/signin' className="label-text-alt link link-hover mx-auto">Have an Account?</Link>
               </label>

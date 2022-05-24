@@ -9,7 +9,7 @@ import Loading from '../SharedComponnets/Loading';
 const Purchase = () => {
   const { id } = useParams();
   const [user] = useAuthState(auth);
-  const { data: product, isLoading, refetch } = useQuery('camera', () => fetch(`http://localhost:5000/camera/${id}`)
+  const { data: product, isLoading, refetch } = useQuery(['camera', id], () => fetch(`http://localhost:5000/camera/${id}`)
     .then(res => res.json()))
   const [quantity, setQuantity] = useState(product?.minOrderQuantity || 0);
   const [error, setError] = useState(false);
@@ -21,7 +21,7 @@ const Purchase = () => {
   let quantityError;
   const handleQuantityInput = (e) => {
 
-    setQuantity(e.target.value);
+    setQuantity(e.target.value || e.defaultValue);
     if (quantity > available || quantity < minOrderQuantity) {
       setError(true);
       quantityError = <p>Invalid Quantity given</p>

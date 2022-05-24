@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../SharedComponnets/Loading';
+import useToken from '../../Hooks/useToken';
 
 const Signin = () => {
   // const [email, setEmail] = useState('');
@@ -28,14 +29,16 @@ const Signin = () => {
     const password = data.password;
     signInWithEmailAndPassword(email, password);
   };
+  const [token] = useToken(user || gUser);
 
   // const passwordResetEmail = async () => {
   //   await sendPasswordResetEmail(email);
   // }
-
-  if (user || gUser) {
-    navigate(from, { replace: true });
-  }
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, navigate, from])
   if (loading || gLoading || sending) {
     return <Loading />
   }
@@ -105,7 +108,7 @@ const Signin = () => {
                 </label>
               </div>
               {error && signError}
-              <input className='btn w-full max-w-xs text-white' type="submit" value="Sign In" />
+              <input className='btn btn-primary w-full max-w-xs text-white' type="submit" value="Sign In" />
               <label className="label">
                 <Link to='/signup' className="label-text-alt link link-hover mx-auto">Create an Account?</Link>
               </label>
