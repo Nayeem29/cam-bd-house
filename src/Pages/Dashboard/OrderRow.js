@@ -1,11 +1,12 @@
 import React from 'react';
 
-const OrderRow = ({ index, _id, order }) => {
-  const { productName, userEmail, totalPrice } = order
+const OrderRow = ({ index, order }) => {
+  const { productName, userEmail, totalPrice } = order;
+
   return (
 
     <tr className='text-center'>
-      <th>{index}</th>
+      <th>{index + 1}</th>
       <td>{userEmail}</td>
       <td>{productName}</td>
       <td>${totalPrice}</td>

@@ -12,6 +12,8 @@ import RequireAuth from './Pages/Login/RequireAuth';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyProfile from './Pages/Dashboard/MyProfile';
 import MyOrders from './Pages/Dashboard/MyOrders';
+import MakeAdmin from './Pages/Dashboard/MakeAdmin';
+import RequireAdmin from './Pages/Login/RequireAdmin';
 
 function App() {
   return (
@@ -32,6 +34,9 @@ function App() {
         </RequireAuth>}>
           <Route index element={<MyProfile />}></Route>
           <Route path='/dashboard/myorders' element={<MyOrders />}></Route>
+          <Route path='/dashboard/admin' element={
+            <RequireAdmin><MakeAdmin /></RequireAdmin>
+          }></Route>
         </Route>
       </Routes>
       <Footer />
