@@ -34,7 +34,7 @@ const MyOrders = () => {
   return (
     <div>
       <div class="overflow-x-auto">
-        <table class="table w-full">
+        <table class="table w-full mt-4">
 
           <thead>
             <tr className='text-center'>

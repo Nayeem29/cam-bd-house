@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const OrderRow = ({ index, order }) => {
-  const { productName, userEmail, totalPrice } = order;
+  const { productName, userEmail, totalPrice, _id } = order;
 
   return (
 
@@ -10,7 +11,9 @@ const OrderRow = ({ index, order }) => {
       <td>{userEmail}</td>
       <td>{productName}</td>
       <td>${totalPrice}</td>
-      <td><button class="btn btn-ghost">Pending</button>
+      <td>
+        {order.paid ? <button class="btn btn-xs btn-disabled">Paid</button>
+          : <Link to={`/dashboard/payment/${_id}`}><button class="btn btn-xs btn-primary">Checkout</button></Link>}
       </td>
       <td><button class="btn btn-ghost">Delete</button>
       </td>
