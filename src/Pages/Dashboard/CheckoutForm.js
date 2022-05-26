@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useState, useEffect } from 'react';
+import Loading from '../SharedComponnets/Loading';
 
 const CheckoutForm = ({ order }) => {
   const stripe = useStripe();
@@ -27,6 +28,10 @@ const CheckoutForm = ({ order }) => {
         }
       }))
   }, [totalPrice])
+
+  if (processing) {
+    return <Loading />
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
