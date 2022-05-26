@@ -1,12 +1,13 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../SharedComponnets/Loading';
 
 const MyProfile = () => {
   const [user, loading] = useAuthState(auth);
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, reset, handleSubmit, formState: { errors } } = useForm();
   if (loading) {
     return <Loading />
   }
@@ -28,6 +29,10 @@ const MyProfile = () => {
     }).then(res => res.json())
       .then(data => {
         console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success('Profile updated successfully!!')
+          reset();
+        }
       })
   };
 
