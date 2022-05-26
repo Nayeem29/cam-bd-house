@@ -23,7 +23,7 @@ const CamParts = () => {
       <hr className=' h-2 w-full' />
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
         {
-          camparts.slice(-3).map(cam => <Products
+          camparts.slice(-4).map(cam => <Products
             key={cam._id}
             cam={cam}
             handleOrder={handleOrder}
