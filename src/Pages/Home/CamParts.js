@@ -8,7 +8,11 @@ const CamParts = () => {
   useEffect(() => {
     fetch('http://localhost:5000/camera')
       .then(res => res.json())
-      .then(data => setCamparts(data))
+      .then(data => {
+        setCamparts(data)
+        // console.log(camparts);
+        // console.log(camparts.slice(-3));
+      })
   }, [])
   const handleOrder = (id) => {
     navigate(`/purchase/${id}`);
@@ -19,7 +23,7 @@ const CamParts = () => {
       <hr className=' h-2 w-full' />
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
         {
-          camparts.slice(-5, -1).map(cam => <Products
+          camparts.slice(-3).map(cam => <Products
             key={cam._id}
             cam={cam}
             handleOrder={handleOrder}

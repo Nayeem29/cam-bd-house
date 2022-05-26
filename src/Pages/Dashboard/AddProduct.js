@@ -22,8 +22,10 @@ const AddProduct = () => {
           const review = {
             name: data.name,
             image: img,
-            rating: data.rating,
-            comments: data.comment
+            price: data.price,
+            minOrderQuantity: data.minOrder,
+            available: data.quantity,
+            description: data.description
           }
           fetch('http://localhost:5000/camera', {
             method: 'POST',
@@ -34,14 +36,16 @@ const AddProduct = () => {
             body: JSON.stringify(review)
           })
             .then(res => res.json())
-            .then(reviewData => {
-              if (reviewData.insertedId) {
-                toast.success('Thank you for your feedback!!')
-                reset();
+            .then(productData => {
+              if (productData.insertedId) {
+                toast.success('A new Item has been added!!')
+
               } else {
                 toast.error('Something went wrong, try again please!')
               }
-            })
+              reset();
+            }
+            )
         }
       })
   }
@@ -80,6 +84,21 @@ const AddProduct = () => {
                 class="input input-bordered w-full max-w-xs" />
               <label class="label">
                 {errors.price?.type === 'required' && <span class="label-text-alt text-red-600">{errors.price.message}</span>}
+              </label>
+            </div>
+            <div class="form-control w-full max-w-xs">
+              <label class="label">
+                <span class="label-text">Minimum Order Quantity</span>
+              </label>
+              <input {...register("minOrder", {
+                required: {
+                  value: true,
+                  message: 'This field is required'
+                }
+              })}
+                class="input input-bordered w-full max-w-xs" />
+              <label class="label">
+                {errors.minOrder?.type === 'required' && <span class="label-text-alt text-red-600">{errors.minOrder.message}</span>}
               </label>
             </div>
             <div class="form-control w-full max-w-xs">

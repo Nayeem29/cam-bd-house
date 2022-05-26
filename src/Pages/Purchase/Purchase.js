@@ -69,7 +69,7 @@ const Purchase = () => {
           <form onSubmit={handleSubmitForm}>
             <div className="form-control w-full max-w-xs">
               <input type="text" placeholder="Your Name" name='username' className="input mb-5 input-bordered w-full max-w-xs" />
-              <input type="text" value={user?.email} className="input mb-5 text-gray-500 input-bordered w-full max-w-xs" />
+              <input type="text" defaultValue={user?.email} className="input mb-5 text-gray-500 input-bordered w-full max-w-xs" />
               <label className="label">
                 <span className="label-text font-semibold">We don't take less than {minOrderQuantity} order for this item</span>
               </label>
