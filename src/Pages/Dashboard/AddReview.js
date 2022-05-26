@@ -96,7 +96,7 @@ const AddReview = () => {
               })}
                 className="select select-bordered w-full max-w-xs">
                 {
-                  camera.map(c => <option>{c.name}</option>)
+                  camera.map(c => <option key={c._id}>{c.name}</option>)
                 }
               </select>
               <label class="label">

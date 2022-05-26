@@ -20,7 +20,7 @@ const Signup = () => {
 
   const navigate = useNavigate();
   let signError;
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, reset, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = async data => {
     // const name = data.name;
     // console.log(data);
@@ -28,10 +28,11 @@ const Signup = () => {
     const password = data.password;
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: data.name });
+    reset();
   };
   useEffect(() => {
     if (token) {
-      navigate('/');
+      navigate('/home');
     }
   }, [token, navigate])
   if (loading || gLoading || updating) {

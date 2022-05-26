@@ -21,19 +21,17 @@ const Signin = () => {
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, reset, handleSubmit, formState: { errors } } = useForm();
   let signError;
   const onSubmit = data => {
     console.log(data)
     const email = data.email;
     const password = data.password;
     signInWithEmailAndPassword(email, password);
+    reset();
   };
   const [token] = useToken(user || gUser);
 
-  // const passwordResetEmail = async () => {
-  //   await sendPasswordResetEmail(email);
-  // }
   useEffect(() => {
     if (token) {
       navigate(from, { replace: true });
