@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../SharedComponnets/Loading';
 import ManageOrderRow from './ManageOrderRow';
+import OrderDeleteModal from './OrderDeleteModal';
 
 const ManageOrders = () => {
   const [deleteOrder, setDeleteOrder] = useState(null);
@@ -11,15 +12,13 @@ const ManageOrders = () => {
       'authorization': `Bearer ${localStorage.getItem('accessToken')}`
     }
   }).then(res => {
-    console.log(res);
+    // console.log(res);
     return res.json()
   }))
   if (isLoading) {
     return <Loading />
   }
-  if (orders) {
-    console.log(orders);
-  }
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -49,6 +48,13 @@ const ManageOrders = () => {
           </tbody>
         </table>
       </div>
+      {
+        deleteOrder && <OrderDeleteModal
+          setDeleteOrder={setDeleteOrder}
+          deleteOrder={deleteOrder}
+          refetch={refetch}
+        ></OrderDeleteModal>
+      }
     </div>
   );
 };

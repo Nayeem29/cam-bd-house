@@ -1,7 +1,8 @@
 import React from 'react';
 
-const ManageOrderRow = ({ order, refetch, index, setDeleteOrder }) => {
+const ManageOrderRow = ({ order, index, setDeleteOrder }) => {
   const { userName, productName, paid } = order;
+  // console.log(order);
   return (
     <tr className='text-center'>
       <th>{index + 1}</th>
@@ -11,7 +12,8 @@ const ManageOrderRow = ({ order, refetch, index, setDeleteOrder }) => {
         {paid ? <button class="btn btn-xs btn-primary">Paid</button>
           : <button class="btn btn-xs btn-primary">Unpaid</button>}
       </td>
-      <td><button class="btn btn-ghost">Delete</button>
+      <td>
+        <label onClick={() => setDeleteOrder(order)} htmlFor="order-delete-modal" class="btn btn-error">Delete</label>
       </td>
     </tr>
   );
