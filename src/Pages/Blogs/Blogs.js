@@ -30,13 +30,13 @@ const Blogs = () => {
       <div className='my-5 mx-auto px-5 py-10 text-justify'>
         <p className='font-bold text-xl'>You have an array of products. Each product has a name, price, description, etc. How will you implement a search to find products by name?</p>
         <p className='text-lg font-normal mt-3'>
-
+          I will loop through each of the products and then each product has a name property which I can access by map function. The search query will be held by if product.name is equal to name.
         </p>
       </div>
       <div className='my-5 mx-auto px-5 py-10 text-justify'>
         <p className='font-bold text-xl'> Why you do not set the state directly in React. For example, if you have const [products, setProducts] = useState([]). Why you do not set products = [...] instead, you use the setProducts</p>
         <p className='text-lg font-normal mt-3'>
-
+          We should not set the state directly in react. Because react has its own lifecycle for state and we know it's an unidirectional data flow. Thus, when any state is changed react needs to compare it with previous data state and when we directly set the state, the shallow compare between view and state distrubed which eventually will affect the react lifecycle.
         </p>
       </div>
     </div>

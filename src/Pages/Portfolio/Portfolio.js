@@ -4,13 +4,13 @@ const Portfolio = () => {
   return (
     <div className='min-h-screen'>
 
-      <div class="flex mt-12">
+      <div class="lg:flex mt-12">
         <div class="card w-96 px-3 bg-base-100 shadow-xl ml-12 py-20">
           <h2 class="text-4xl font-bold">Nayeem Hasan</h2>
           <p className='my-3'>Email: nayeembracu29@gmail.com</p>
           <p className='font-bold'>React Web Developer</p>
         </div>
-        <div class="card w-2/3 bg-base-100 shadow-xl px-12 mx-12">
+        <div class="card w-full lg:w-2/3 bg-base-100 shadow-xl px-12 mx-12">
           <div class="flex flex-col items-start justify-between">
             <div className='flex items-center justify-between'>
               <div className='mr-12'>

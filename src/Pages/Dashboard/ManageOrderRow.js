@@ -9,7 +9,13 @@ const ManageOrderRow = ({ order, index, setDeleteOrder }) => {
       <td>{userName}</td>
       <td>{productName}</td>
       <td>
-        {paid ? <button class="btn btn-xs btn-primary">Paid</button>
+        {paid ?
+          <select class="select select-bordered select-sm w-1/2 max-w-xs">
+            <option>Paid</option>
+            <option>Pending</option>
+            <option>Shipped</option>
+          </select>
+
           : <button class="btn btn-xs btn-primary">Unpaid</button>}
       </td>
       <td>

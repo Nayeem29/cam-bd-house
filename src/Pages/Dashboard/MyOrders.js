@@ -3,16 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Loading from '../SharedComponnets/Loading';
 import OrderRow from './OrderRow';
+import UserDeleteModal from './UserDeleteModal';
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
+  const [userModal, setUserModal] = useState(null);
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/purchaseinfo?userEmail=${user.email}`, {
+      fetch(`http://localhost:5000/purchase?userEmail=${user.email}`, {
         method: 'GET',
         headers: {
           'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -30,7 +33,10 @@ const MyOrders = () => {
           setOrders(data)
         })
     }
-  }, [user, navigate])
+  }, [user, navigate, userModal])
+  if (loading) {
+    return <Loading />
+  }
   return (
     <div>
       <div class="overflow-x-auto">
@@ -53,12 +59,19 @@ const MyOrders = () => {
                 key={order._id}
                 index={index}
                 order={order}
+                setUserModal={setUserModal}
               ></OrderRow>
               )}
 
           </tbody>
         </table>
       </div>
+      {
+        userModal && <UserDeleteModal
+          userModal={userModal}
+          setUserModal={setUserModal}
+        ></UserDeleteModal>
+      }
     </div>
   );
 };

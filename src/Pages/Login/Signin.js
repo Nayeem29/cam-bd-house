@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../SharedComponnets/Loading';
 import useToken from '../../Hooks/useToken';
@@ -16,7 +16,7 @@ const Signin = () => {
     error,
   ] = useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-  const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
+  // const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
 
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
@@ -39,11 +39,11 @@ const Signin = () => {
       navigate(from, { replace: true });
     }
   }, [token, navigate, from])
-  if (loading || gLoading || sending) {
+  if (loading || gLoading) {
     return <Loading />
   }
-  if (error || gError || resetError) {
-    signError = <small className='text-red-600'>{error?.message}{gError?.message}{resetError?.message}</small>
+  if (error || gError) {
+    signError = <small className='text-red-600'>{error?.message}{gError?.message}</small>
   }
   return (
     <div className=''>
@@ -101,11 +101,11 @@ const Signin = () => {
                   {errors.password?.type === 'pattern' && <span className="label-text-alt text-xs text-red-600">{errors.password.message}</span>}
 
                 </label>
-                <label className="label">
+                {/* <label className="label">
                   <button
                     // onClick={passwordResetEmail} 
                     className="label-text-alt link link-hover">Forgot password?</button>
-                </label>
+                </label> */}
               </div>
               {error && signError}
               <input className='btn btn-primary w-full max-w-xs text-white' type="submit" value="Sign In" />

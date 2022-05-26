@@ -15,6 +15,9 @@ const Navbar = () => {
       user && <li><Link to='/dashboard'>Dashboard</Link></li>
     }
     <li><Link to='/blogs'>Blogs</Link></li>
+    {
+      user && <li className='flex items-center'>{user.displayName}</li>
+    }
   </>
   const logOut = () => {
     signOut(auth);
@@ -28,18 +31,15 @@ const Navbar = () => {
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
           </label>
-          <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-24">
+          <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-36">
             {
               MenuItems
             }
             <li tabIndex="0">
               {user ?
-                <>
-                  <ul className="p-2">
-                    <li>{user?.email}</li>
-                  </ul>
-                  <button onClick={logOut} className="btn btn-ghost">Logout</button>
-                </>
+
+                <button onClick={logOut} className="btn btn-ghost">Logout</button>
+
                 :
                 <>
                   <Link to='/signin' className="justify-between">
@@ -59,12 +59,7 @@ const Navbar = () => {
           }
           <li tabIndex="0">
             {user ?
-              <>
-                <ul className="p-2">
-                  <li>{user?.email}</li>
-                </ul>
-                <button onClick={logOut} className="btn btn-ghost">Logout</button>
-              </>
+              <button onClick={logOut} className="btn btn-ghost">Logout</button>
               :
               <>
                 <Link to='/signin' className="justify-between">
@@ -76,7 +71,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className='navbar-end'>
-        <label tabIndex='1' htmlFor="my-dashboard" class="btn btn-primary drawer-button lg:hidden">
+        <label tabIndex='1' htmlFor="my-dashboard" class="btn btn-ghost lg:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
         </label>
       </div>

@@ -22,12 +22,12 @@ const Signup = () => {
   let signError;
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = async data => {
-    const name = data.name;
+    // const name = data.name;
     // console.log(data);
     const email = data.email;
     const password = data.password;
     await createUserWithEmailAndPassword(email, password);
-    await updateProfile({ displayName: name });
+    await updateProfile({ displayName: data.name });
   };
   useEffect(() => {
     if (token) {

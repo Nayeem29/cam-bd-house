@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const OrderRow = ({ index, order }) => {
+const OrderRow = ({ index, order, setUserModal }) => {
   const { productName, userEmail, totalPrice, _id } = order;
 
   return (
@@ -12,10 +12,15 @@ const OrderRow = ({ index, order }) => {
       <td>{productName}</td>
       <td>${totalPrice}</td>
       <td>
-        {order.paid ? <button class="btn btn-xs btn-disabled">Paid</button>
-          : <Link to={`/dashboard/payment/${_id}`}><button class="btn btn-xs btn-primary">Checkout</button></Link>}
+        {order.paid ? <button class="btn btn-disabled">Paid</button>
+          : <Link to={`/dashboard/payment/${_id}`}><button class="btn btn-primary">Checkout</button></Link>}
       </td>
-      <td><button class="btn btn-ghost">Delete</button>
+      <td>
+        {!order.paid &&
+          <label onClick={() => setUserModal(order)} htmlFor="user-delete-modal" class="btn btn-error">Delete</label>
+
+          // <label onClick={() => setUserModal(order)} htmlFor="user-delete-modal" class="btn disabled">Delete</label>
+        }
       </td>
     </tr>
 

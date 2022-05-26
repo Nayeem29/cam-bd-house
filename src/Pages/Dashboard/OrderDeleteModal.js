@@ -6,7 +6,7 @@ const OrderDeleteModal = ({ setDeleteOrder, deleteOrder, refetch }) => {
   // console.log('modal', deleteOrder);
   const deleteProductOrder = () => {
     fetch(`http://localhost:5000/purchaseinfo/${_id}`, {
-      method: 'Delete',
+      method: 'DELETE',
       headers: {
         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
       }
