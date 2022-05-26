@@ -6,7 +6,7 @@ const CamParts = () => {
   const [camparts, setCamparts] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch('http://localhost:5000/camera')
+    fetch('https://serene-caverns-13504.herokuapp.com/camera')
       .then(res => res.json())
       .then(data => {
         setCamparts(data)

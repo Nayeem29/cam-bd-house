@@ -6,7 +6,7 @@ import ProductRow from './ProductRow';
 
 const ManageProducts = () => {
   const [deleteProduct, setDeleteProduct] = useState(null);
-  const { data: products, isLoading, refetch } = useQuery('camera', () => fetch('http://localhost:5000/camera')
+  const { data: products, isLoading, refetch } = useQuery('camera', () => fetch('https://serene-caverns-13504.herokuapp.com/camera')
     .then(res => res.json()))
 
   if (isLoading) {

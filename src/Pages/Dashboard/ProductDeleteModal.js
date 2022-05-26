@@ -5,7 +5,7 @@ const ProductDeleteModal = ({ setDeleteProduct, deleteProduct, refetch }) => {
 
   const { name, _id } = deleteProduct;
   const handleDeleteProduct = () => {
-    fetch(`http://localhost:5000/camera/${_id}`, {
+    fetch(`https://serene-caverns-13504.herokuapp.com/camera/${_id}`, {
       method: 'DELETE',
       headers: {
         'authorization': `Bearer ${localStorage.getItem('accessToken')}`

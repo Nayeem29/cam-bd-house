@@ -4,7 +4,7 @@ import Loading from '../SharedComponnets/Loading';
 import AdminRow from './AdminRow';
 
 const MakeAdmin = () => {
-  const { data: users, isLoading, refetch } = useQuery('allusers', () => fetch('http://localhost:5000/users', {
+  const { data: users, isLoading, refetch } = useQuery('allusers', () => fetch('https://serene-caverns-13504.herokuapp.com/users', {
     method: 'GET',
     headers: {
       authorization: `Bearer ${localStorage.getItem('accessToken')}`

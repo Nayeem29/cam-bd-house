@@ -14,7 +14,7 @@ const CheckoutForm = ({ order }) => {
 
   useEffect(() => {
 
-    fetch('http://localhost:5000/create-payment-intent', {
+    fetch('https://serene-caverns-13504.herokuapp.com/create-payment-intent', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -85,7 +85,7 @@ const CheckoutForm = ({ order }) => {
         order: _id,
         transactionId: paymentIntent.id
       }
-      fetch(`http://localhost:5000/purchaseinfo/${_id}`, {
+      fetch(`https://serene-caverns-13504.herokuapp.com/purchaseinfo/${_id}`, {
         method: 'PATCH',
         headers: {
           'content-type': 'application/json',

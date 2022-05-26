@@ -5,7 +5,7 @@ const AdminRow = ({ index, user, refetch }) => {
   const { email, role } = user;
 
   const makeAdmin = () => {
-    fetch(`http://localhost:5000/users/admin/${email}`, {
+    fetch(`https://serene-caverns-13504.herokuapp.com/users/admin/${email}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',

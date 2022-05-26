@@ -27,7 +27,7 @@ const AddProduct = () => {
             available: data.quantity,
             description: data.description
           }
-          fetch('http://localhost:5000/camera', {
+          fetch('https://serene-caverns-13504.herokuapp.com/camera', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',

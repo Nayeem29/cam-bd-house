@@ -18,7 +18,7 @@ const MyProfile = () => {
       education: data.education,
       location: data.location,
     }
-    fetch(`http://localhost:5000/updatedUser/${user.email}`, {
+    fetch(`https://serene-caverns-13504.herokuapp.com/updatedUser/${user.email}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',

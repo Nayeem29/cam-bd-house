@@ -9,7 +9,7 @@ import CheckoutForm from './CheckoutForm';
 const stripePromise = loadStripe('pk_test_51L3BdqJmBQp2aGy4ILSFzHhGVbP2fWJf2q3WZ11YTRouTQR50dxSBZEkoYPs2bQwtu2dUZO23SrM8dxnO3G9m0XR00EWbEFVbh');
 const Payment = () => {
   const { id } = useParams();
-  const url = `http://localhost:5000/purchase/${id}`;
+  const url = `https://serene-caverns-13504.herokuapp.com/purchase/${id}`;
   const { data: order, isLoading } = useQuery(['orders', id], () => fetch(url, {
     method: 'GET',
     headers: {

@@ -5,7 +5,7 @@ const OrderDeleteModal = ({ setDeleteOrder, deleteOrder, refetch }) => {
   const { _id } = deleteOrder;
   // console.log('modal', deleteOrder);
   const deleteProductOrder = () => {
-    fetch(`http://localhost:5000/purchaseinfo/${_id}`, {
+    fetch(`https://serene-caverns-13504.herokuapp.com/purchaseinfo/${_id}`, {
       method: 'DELETE',
       headers: {
         'authorization': `Bearer ${localStorage.getItem('accessToken')}`

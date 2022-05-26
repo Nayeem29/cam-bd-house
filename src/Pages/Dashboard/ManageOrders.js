@@ -6,7 +6,7 @@ import OrderDeleteModal from './OrderDeleteModal';
 
 const ManageOrders = () => {
   const [deleteOrder, setDeleteOrder] = useState(null);
-  const { data: orders, isLoading, refetch } = useQuery('purchaseinfo', () => fetch('http://localhost:5000/purchaseinfo', {
+  const { data: orders, isLoading, refetch } = useQuery('purchaseinfo', () => fetch('https://serene-caverns-13504.herokuapp.com/purchaseinfo', {
     method: 'GET',
     headers: {
       'authorization': `Bearer ${localStorage.getItem('accessToken')}`

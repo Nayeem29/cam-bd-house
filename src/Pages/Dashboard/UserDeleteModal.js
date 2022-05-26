@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 const UserDeleteModal = ({ userModal, setUserModal }) => {
   const { productName, _id } = userModal;
-  fetch(`http://localhost:5000/purchaseinfo/${_id}`, {
+  fetch(`https://serene-caverns-13504.herokuapp.com/purchaseinfo/${_id}`, {
     method: 'DELETE',
     headers: {
       'authorization': `Bearer ${localStorage.getItem('accessToken')}`

@@ -9,7 +9,7 @@ import Loading from '../SharedComponnets/Loading';
 const Purchase = () => {
   const { id } = useParams();
   const [user] = useAuthState(auth);
-  const { data: product, isLoading, refetch } = useQuery(['camera', id], () => fetch(`http://localhost:5000/camera/${id}`)
+  const { data: product, isLoading, refetch } = useQuery(['camera', id], () => fetch(`https://serene-caverns-13504.herokuapp.com/camera/${id}`)
     .then(res => res.json()))
   const [quantity, setQuantity] = useState(product?.minOrderQuantity || 0);
   const [error, setError] = useState(false);
@@ -43,7 +43,7 @@ const Purchase = () => {
       quantity
     }
     // console.log(purchaseInfo);
-    fetch('http://localhost:5000/purchaseinfo', {
+    fetch('https://serene-caverns-13504.herokuapp.com/purchaseinfo', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

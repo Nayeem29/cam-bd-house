@@ -6,7 +6,7 @@ import Loading from '../SharedComponnets/Loading';
 
 const AddReview = () => {
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
-  const { data: camera, isLoading } = useQuery('products', () => fetch('http://localhost:5000/camera', {
+  const { data: camera, isLoading } = useQuery('products', () => fetch('https://serene-caverns-13504.herokuapp.com/camera', {
     method: 'GET',
     headers: {
       'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -39,7 +39,7 @@ const AddReview = () => {
             rating: data.rating,
             comments: data.comment
           }
-          fetch('http://localhost:5000/review', {
+          fetch('https://serene-caverns-13504.herokuapp.com/review', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
